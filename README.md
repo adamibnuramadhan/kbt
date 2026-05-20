@@ -1,16 +1,99 @@
-# React + Vite
+# FuelGuard - Fuel Management Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+FuelGuard adalah web app dashboard untuk monitoring konsumsi bahan bakar armada kendaraan.
 
-Currently, two official plugins are available:
+Project ini mencakup:
+- Dashboard KPI dan ringkasan alert
+- Fleet management (tabel kendaraan, modal detail, status kesehatan sistem)
+- Reports & analytics
+- Settings dan Support page
+- Login page, routing, notification drawer, dan quick action modal
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech Stack
 
-## React Compiler
+- React + Vite
+- React Router
+- Zustand
+- Recharts
+- Tailwind CSS
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Requirements
 
-## Expanding the ESLint configuration
+- Node.js 18+ (disarankan Node.js 20+)
+- npm 9+
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Quick Start
+
+Install dependency:
+
+```bash
+npm install
+```
+
+Jalankan development server:
+
+```bash
+npm run dev
+```
+
+Build production:
+
+```bash
+npm run build
+```
+
+Preview hasil build:
+
+```bash
+npm run preview
+```
+
+## Demo Login
+
+Di halaman login, gunakan password berikut:
+
+- Password: `admin`
+
+Email bebas (contoh: `fleet@company.com`).
+
+## Available Scripts
+
+- `npm run dev` - start Vite dev server
+- `npm run build` - production build
+- `npm run lint` - jalankan ESLint
+- `npm run preview` - preview production build
+
+## Routes
+
+- `/login`
+- `/dashboard`
+- `/fleet`
+- `/reports`
+- `/settings`
+- `/support`
+
+## Struktur Folder (Ringkas)
+
+```text
+src/
+	components/
+		dashboard/
+		fleet/
+		layout/
+		reports/
+		settings/
+		support/
+		ui/
+	data/
+	pages/
+	store/
+	styles/
+	App.jsx
+	main.jsx
+```
+
+## Catatan
+
+- Data masih menggunakan mock data pada `src/data/mockData.js`.
+- State UI global disimpan di store `src/store/useUIStore.js`.
+- App dibungkus `ToastProvider` di `src/main.jsx` untuk notifikasi global.
