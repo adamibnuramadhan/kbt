@@ -1,4 +1,8 @@
 import { NavLink, useNavigate } from 'react-router-dom'
+<<<<<<< HEAD
+=======
+import { useState } from 'react'
+>>>>>>> 58dcdca (kbt full)
 import useUIStore from '../../store/useUIStore'
 import { alerts } from '../../data/mockData'
 import Badge from '../ui/Badge'
@@ -22,9 +26,19 @@ function Icon({ d }) {
 function Sidebar() {
   const sidebarOpen = useUIStore((state) => state.sidebarOpen)
   const toggleSidebar = useUIStore((state) => state.toggleSidebar)
+<<<<<<< HEAD
   const clearAuthAndLogout = useUIStore((state) => state.clearAuthAndLogout)
   const navSearchQuery = useUIStore((state) => state.navSearchQuery)
   const navigate = useNavigate()
+=======
+  const setSidebarOpen = useUIStore((state) => state.setSidebarOpen)
+  const clearAuthAndLogout = useUIStore((state) => state.clearAuthAndLogout)
+  const navSearchQuery = useUIStore((state) => state.navSearchQuery)
+  const navigate = useNavigate()
+  const [hoveredItem, setHoveredItem] = useState(null)
+
+  const isCollapsed = !sidebarOpen
+>>>>>>> 58dcdca (kbt full)
 
   const handleLogout = () => {
     clearAuthAndLogout()
@@ -69,6 +83,11 @@ function Sidebar() {
               key={item.path}
               to={item.path}
               title={!sidebarOpen ? item.label : undefined}
+<<<<<<< HEAD
+=======
+              onMouseEnter={() => setHoveredItem(item.path)}
+              onMouseLeave={() => setHoveredItem(null)}
+>>>>>>> 58dcdca (kbt full)
               className={({ isActive }) =>
                 `group relative flex items-center rounded-md px-3 py-2 text-sm transition-colors duration-150 ${
                   sidebarOpen ? 'justify-start gap-3' : 'justify-center'
@@ -88,8 +107,13 @@ function Sidebar() {
                   <span className="absolute right-2 top-2 h-2.5 w-2.5 rounded-full bg-[var(--error)] ring-2 ring-[var(--bg-card)]" />
                 )
               )}
+<<<<<<< HEAD
               {!sidebarOpen && (
                 <span className="pointer-events-none absolute left-full top-1/2 ml-2 hidden -translate-y-1/2 rounded-md border border-[var(--border)] bg-[var(--bg-card)] px-2 py-1 text-xs text-[var(--text-secondary)] shadow-lg group-hover:block">
+=======
+              {isCollapsed && hoveredItem === item.path && (
+                <span className="pointer-events-none absolute left-[88px] top-1/2 z-50 -translate-y-1/2 whitespace-nowrap rounded-md border border-[var(--border)] bg-[var(--bg-card)] px-3 py-1.5 text-xs text-white shadow-lg transition-all duration-150">
+>>>>>>> 58dcdca (kbt full)
                   {item.label}
                 </span>
               )}

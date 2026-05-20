@@ -11,7 +11,6 @@ function TopBar() {
   const toggleNotifPanel = useUIStore((s) => s.toggleNotifPanel)
   const toggleSidebar = useUIStore((s) => s.toggleSidebar)
   const setNavSearchQuery = useUIStore((s) => s.setNavSearchQuery)
-
   const unread = alerts.length
   const breadcrumbMap = {
     '/dashboard': 'Overview',
