@@ -38,8 +38,4 @@ export default function QuickActionModal() {
       </div>
     </Modal>
   )
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 58dcdca (kbt full)
