@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react'
+import React, { useState } from 'react'
 import Badge from '../ui/Badge'
 import EmptyState from '../ui/EmptyState'
 
@@ -16,7 +16,7 @@ function FuelGauge({ percent = 0 }) {
   )
 }
 
-export default function VehicleTable({ vehicles = [], onRowClick = () => {} }) {
+export default function VehicleTable({ vehicles = [], onRowClick = () => {}, onEditClick = () => {}, onDeleteClick = () => {} }) {
   const [search, setSearch] = useState('')
 
   const displayed = vehicles.filter((v) => `${v.id} ${v.driver} ${v.location}`.toLowerCase().includes(search.toLowerCase()))
@@ -52,6 +52,7 @@ export default function VehicleTable({ vehicles = [], onRowClick = () => {} }) {
                 <th className="px-4 py-3">Efficiency</th>
                 <th className="px-4 py-3">Status</th>
                 <th className="px-4 py-3">Last Updated</th>
+                <th className="px-4 py-3 text-right">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -67,9 +68,25 @@ export default function VehicleTable({ vehicles = [], onRowClick = () => {} }) {
                   </td>
                   <td className="px-4 py-3 font-mono text-sm text-[var(--text-secondary)]">{v.efficiency} km/L</td>
                   <td className="px-4 py-3">
-                    <Badge variant={v.status === 'moving' ? 'success' : v.status === 'idle' ? 'warning' : 'neutral'}>{v.status.toUpperCase()}</Badge>
+                    <Badge variant={v.status === 'moving' ? 'success' : v.status === 'offline' ? 'error' : 'warning'}>{v.status.toUpperCase()}</Badge>
                   </td>
                   <td className="px-4 py-3 text-[var(--muted)]">{v.lastUpdated}</td>
+                  <td className="px-4 py-3 text-right">
+                    <div className="flex items-center justify-end gap-2">
+                      <button 
+                        onClick={(e) => { e.stopPropagation(); onEditClick(v); }}
+                        className="rounded bg-[var(--bg-hover)] px-2 py-1 text-xs text-[var(--text-secondary)] hover:text-[var(--primary)]"
+                      >
+                        Edit
+                      </button>
+                      <button 
+                        onClick={(e) => { e.stopPropagation(); onDeleteClick(v); }}
+                        className="rounded bg-[var(--bg-hover)] px-2 py-1 text-xs text-[var(--text-secondary)] hover:text-[var(--error)]"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>
