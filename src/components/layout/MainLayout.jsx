@@ -1,13 +1,29 @@
+import { useEffect } from 'react'
 import Sidebar from './Sidebar'
 import TopBar from './TopBar'
 import useUIStore from '../../store/useUIStore'
 import QuickActionModal from '../ui/QuickActionModal'
+import useFleetStore from '../../store/useFleetStore'
+import useDriverStore from '../../store/useDriverStore'
+import useFuelLogStore from '../../store/useFuelLogStore'
+import useMaintenanceStore from '../../store/useMaintenanceStore'
 
 function MainLayout({ children }) {
   const sidebarOpen = useUIStore((state) => state.sidebarOpen)
   const activeModal = useUIStore((state) => state.activeModal)
   const openModal = useUIStore((state) => state.openModal)
   const toggleSidebar = useUIStore((state) => state.toggleSidebar)
+  const loadVehicles = useFleetStore((state) => state.loadVehicles)
+  const loadDrivers = useDriverStore((state) => state.loadDrivers)
+  const loadFuelLogs = useFuelLogStore((state) => state.loadFuelLogs)
+  const loadMaintenanceLogs = useMaintenanceStore((state) => state.loadMaintenanceLogs)
+
+  useEffect(() => {
+    loadVehicles()
+    loadDrivers()
+    loadFuelLogs()
+    loadMaintenanceLogs()
+  }, [loadVehicles, loadDrivers, loadFuelLogs, loadMaintenanceLogs])
 
   return (
     <div className="relative flex min-h-screen bg-[var(--bg-primary)] text-[var(--text)]">

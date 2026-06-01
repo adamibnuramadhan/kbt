@@ -1,12 +1,24 @@
-﻿import React from 'react'
-import Card from '../ui/Card'
+﻿import Card from '../ui/Card'
 import Badge from '../ui/Badge'
 import { alerts } from '../../data/mockData'
 import { useNavigate } from 'react-router-dom'
+import useMaintenanceStore from '../../store/useMaintenanceStore'
 
 export default function AlertPanel() {
   const navigate = useNavigate()
-  const items = alerts.slice(0, 4)
+  const maintenanceLogs = useMaintenanceStore((state) => state.maintenanceLogs)
+  const upcomingMaintenance = maintenanceLogs.filter((log) => log.status === 'Scheduled').slice(0, 2)
+
+  const items = [
+    ...alerts.slice(0, 2),
+    ...upcomingMaintenance.map((log) => ({
+      id: log.id,
+      severity: 'warning',
+      title: 'Service Reminder',
+      description: `${log.vehicleId} dijadwalkan servis pada ${log.scheduledDate}${log.notes ? ` - ${log.notes}` : ''}`,
+      timestamp: 'Maintenance log',
+    })),
+  ].slice(0, 4)
 
   return (
     <Card>
@@ -34,7 +46,7 @@ export default function AlertPanel() {
       </div>
 
       <div className="mt-4 text-right">
-        <button className="text-sm text-[var(--primary)]">VIEW ALL SYSTEM ALERTS →</button>
+        <button onClick={() => navigate('/operations')} className="text-sm text-[var(--primary)]">VIEW ALL SYSTEM ALERTS →</button>
       </div>
     </Card>
   )

@@ -6,6 +6,7 @@ import Badge from '../ui/Badge'
 const navItems = [
   { label: 'Overview', path: '/dashboard', icon: 'M3 3h6v6H3z' },
   { label: 'Fleet', path: '/fleet', icon: 'M3 10h18v7H3z' },
+  { label: 'Operations', path: '/operations', icon: 'M4 5h16v14H4z' },
   { label: 'Reports', path: '/reports', icon: 'M3 3h18v4H3z' },
   { label: 'Settings', path: '/settings', icon: 'M12 3v3' },
   { label: 'Support', path: '/support', icon: 'M12 2a10 10 0 100 20 10 10 0 000-20z' },
