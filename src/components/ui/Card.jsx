@@ -1,13 +1,13 @@
-﻿import React from 'react'
+import React from 'react'
 
 export default function Card({ children, hover = false, className = '', noPadding = false, ...rest }) {
   return (
     <div
-      className={`bg-[var(--bg-card)] border border-[var(--border)] rounded-[var(--radius-card)] ${noPadding ? '' : 'p-6'} ${hover ? 'hover:border-[var(--primary-light)] transition-colors' : ''} ${className}`}
+      className={`bg-[var(--bg-card)] rounded-[var(--radius-card)] ${noPadding ? '' : 'p-6'} ${hover ? 'transition-shadow duration-200 hover:shadow-[var(--shadow-card-hover)]' : ''} ${className}`}
+      style={{ boxShadow: 'var(--shadow-card)' }}
       {...rest}
     >
       {children}
     </div>
   )
 }
- 

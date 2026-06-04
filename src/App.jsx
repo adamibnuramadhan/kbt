@@ -1,4 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { useEffect } from 'react'
+import useUIStore from './store/useUIStore'
 import DashboardPage from './pages/DashboardPage'
 import FleetPage from './pages/FleetPage'
 import OperationsPage from './pages/OperationsPage'
@@ -8,6 +10,12 @@ import SupportPage from './pages/SupportPage'
 import LoginPage from './pages/LoginPage'
 
 function App() {
+  const theme = useUIStore((state) => state.theme)
+  
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+  }, [theme])
+
   return (
     <BrowserRouter>
       <Routes>

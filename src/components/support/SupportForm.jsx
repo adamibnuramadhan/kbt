@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react'
+import React, { useState } from 'react'
 import Card from '../ui/Card'
 import Button from '../ui/Button'
 import { useToast } from '../ui/Toast'
@@ -29,15 +29,17 @@ export default function SupportForm() {
     setDesc('')
   }
 
+  const inputClass = "mt-1.5 w-full rounded-[var(--radius-button)] bg-[var(--bg-primary)] border border-[var(--border-strong)] px-3 py-2 text-[13px] text-[var(--text)] focus:outline-none focus:border-[var(--primary)]/40 focus:ring-1 focus:ring-[var(--primary)]/20 transition-colors"
+
   return (
     <Card>
-      <h3 className="font-display text-lg">GET IN TOUCH</h3>
-      <p className="text-sm text-[var(--muted)] mt-1">Technical Support — submit a ticket and our team will respond promptly.</p>
+      <h3 className="font-display text-lg text-[var(--text)]">Get in Touch</h3>
+      <p className="text-sm text-[var(--muted)] mt-1">Submit a ticket and our team will respond promptly.</p>
 
-      <form onSubmit={submit} className="mt-4 space-y-3">
+      <form onSubmit={submit} className="mt-5 space-y-4">
         <div>
-          <label className="text-sm text-[var(--muted)]">Inquiry Type</label>
-          <select value={type} onChange={(e) => setType(e.target.value)} className="mt-1 w-full rounded bg-[var(--bg)] border border-[var(--border)] px-3 py-2 text-sm text-[var(--text)]">
+          <label className="block text-xs font-medium text-[var(--muted)] uppercase tracking-wider">Inquiry Type</label>
+          <select value={type} onChange={(e) => setType(e.target.value)} className={inputClass}>
             <option>Hardware Failure</option>
             <option>Software Bug</option>
             <option>Data Issue</option>
@@ -46,22 +48,21 @@ export default function SupportForm() {
         </div>
 
         <div>
-          <label className="text-sm text-[var(--muted)]">Vehicle / Asset ID</label>
-          <input value={asset} onChange={(e) => setAsset(e.target.value)} placeholder="e.g. TRUCK-084" className="mt-1 w-full rounded bg-[var(--bg)] border border-[var(--border)] px-3 py-2 text-sm text-[var(--text)]" />
-          {errors.asset && <div className="text-xs text-[var(--error)] mt-1">{errors.asset}</div>}
+          <label className="block text-xs font-medium text-[var(--muted)] uppercase tracking-wider">Vehicle / Asset ID</label>
+          <input value={asset} onChange={(e) => setAsset(e.target.value)} placeholder="e.g. TRUCK-084" className={inputClass} />
+          {errors.asset && <div className="text-[10px] text-[var(--error)] mt-1">{errors.asset}</div>}
         </div>
 
         <div>
-          <label className="text-sm text-[var(--muted)]">Problem Description</label>
-          <textarea value={desc} onChange={(e) => setDesc(e.target.value)} rows={4} className="mt-1 w-full rounded bg-[var(--bg)] border border-[var(--border)] px-3 py-2 text-sm text-[var(--text)]" />
-          {errors.desc && <div className="text-xs text-[var(--error)] mt-1">{errors.desc}</div>}
+          <label className="block text-xs font-medium text-[var(--muted)] uppercase tracking-wider">Problem Description</label>
+          <textarea value={desc} onChange={(e) => setDesc(e.target.value)} rows={4} className={inputClass} />
+          {errors.desc && <div className="text-[10px] text-[var(--error)] mt-1">{errors.desc}</div>}
         </div>
 
-        <div>
-          <Button type="submit" variant="primary" size="md">▶ Submit Ticket</Button>
+        <div className="pt-1">
+          <Button type="submit" variant="primary" size="sm">Submit Ticket</Button>
         </div>
       </form>
     </Card>
   )
 }
-

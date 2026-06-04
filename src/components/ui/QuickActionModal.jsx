@@ -26,7 +26,7 @@ export default function QuickActionModal() {
           <button
             key={action.key}
             onClick={() => handleAction(action.title)}
-            className="rounded-[var(--radius-card)] border border-[var(--border)] bg-[var(--bg-primary)] p-4 text-left transition hover:border-[var(--primary-light)] hover:bg-[var(--bg-hover)]"
+            className="rounded-[var(--radius-card)] border border-[var(--border)] bg-[var(--bg-primary)] p-4 text-left transition hover:border-[var(--border-strong)] hover:bg-[var(--bg-hover)]"
           >
             <div className="text-sm font-semibold text-[var(--text)]">{action.title}</div>
             <div className="mt-2 text-sm text-[var(--muted)]">{action.description}</div>
