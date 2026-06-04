@@ -1,4 +1,3 @@
-﻿import React from 'react'
 import Modal from '../ui/Modal'
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
 

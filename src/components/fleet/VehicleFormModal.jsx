@@ -1,32 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Modal from '../ui/Modal';
 
 export default function VehicleFormModal({ vehicle, onClose, onSave }) {
   const isEditing = !!vehicle;
   
-  const [formData, setFormData] = useState({
-    plateNumber: '',
-    type: 'Truck',
-    driver: '',
-    driverPhone: '',
-    fuelCapacity: 300,
-    status: 'idle',
-    location: 'Depot Utama',
-  });
-
-  useEffect(() => {
-    if (vehicle) {
-      setFormData({
-        plateNumber: vehicle.plateNumber || '',
-        type: vehicle.type || 'Truck',
-        driver: vehicle.driver || '',
-        driverPhone: vehicle.driverPhone || '',
-        fuelCapacity: vehicle.fuelCapacity || 300,
-        status: vehicle.status || 'idle',
-        location: vehicle.location || 'Depot Utama',
-      });
-    }
-  }, [vehicle]);
+  const [formData, setFormData] = useState(() => ({
+    plateNumber: vehicle?.plateNumber || '',
+    type: vehicle?.type || 'Truck',
+    driver: vehicle?.driver || '',
+    driverPhone: vehicle?.driverPhone || '',
+    fuelCapacity: vehicle?.fuelCapacity || 300,
+    status: vehicle?.status || 'idle',
+    location: vehicle?.location || 'Depot Utama',
+  }));
 
   const handleChange = (e) => {
     const { name, value } = e.target;

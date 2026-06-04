@@ -1,4 +1,3 @@
-import React from 'react'
 
 const VARIANTS = {
   success: 'bg-[var(--success)]/10 text-[var(--success)]',

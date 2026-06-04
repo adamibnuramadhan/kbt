@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react'
 import MainLayout from '../components/layout/MainLayout'
 import Card from '../components/ui/Card'
-import Badge from '../components/ui/Badge'
 import VehicleTable from '../components/fleet/VehicleTable'
 import FleetMap from '../components/fleet/FleetMap'
 import SystemHealth from '../components/fleet/SystemHealth'
@@ -99,7 +98,7 @@ export default function FleetPage() {
         />
 
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-          <div className="lg:col-span-2"><FleetMap vehicles={filtered.slice(0, 8)} /></div>
+          <div className="lg:col-span-2"><FleetMap vehicles={filtered} /></div>
           <div><SystemHealth /></div>
         </div>
 

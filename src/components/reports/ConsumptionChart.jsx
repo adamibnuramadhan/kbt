@@ -1,11 +1,8 @@
-﻿import React from 'react'
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts'
 import Card from '../ui/Card'
 import { consumptionByRoute } from '../../data/mockData'
 
 export default function ConsumptionChart() {
-  const data = consumptionByRoute.map((r) => ({ name: r.route, liters: r.liters || r.liters === 0 ? r.liters : r.liters }))
-
   return (
     <Card>
       <div className="flex items-center justify-between">

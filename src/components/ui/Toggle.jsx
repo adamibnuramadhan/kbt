@@ -1,4 +1,3 @@
-import React from 'react'
 
 export default function Toggle({ checked = false, onChange = () => {}, disabled = false, label }) {
   return (

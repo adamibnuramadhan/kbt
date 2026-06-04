@@ -1,4 +1,3 @@
-import React from 'react'
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ReferenceLine } from 'recharts'
 import Card from '../ui/Card'
 import { fuelTrend7Days } from '../../data/mockData'

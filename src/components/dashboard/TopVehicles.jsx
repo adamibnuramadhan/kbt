@@ -1,4 +1,3 @@
-import React from 'react'
 import Card from '../ui/Card'
 import { topVehicles } from '../../data/mockData'
 

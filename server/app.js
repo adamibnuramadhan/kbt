@@ -1,3 +1,4 @@
+// No env comment needed
 import express from 'express'
 import cors from 'cors'
 import pool from './db.js'
@@ -222,6 +223,7 @@ app.use('/api/drivers', driverRouter)
 app.use('/api/fuel-logs', fuelLogRouter)
 app.use('/api/maintenance-logs', maintenanceRouter)
 
+// eslint-disable-next-line no-unused-vars
 app.use((error, _req, res, _next) => {
 	res.status(500).json({ message: error.message })
 })

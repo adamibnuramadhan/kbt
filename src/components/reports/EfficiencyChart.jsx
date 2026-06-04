@@ -1,5 +1,4 @@
-﻿import React from 'react'
-import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, AreaChart, Area } from 'recharts'
+import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip } from 'recharts'
 import Card from '../ui/Card'
 import { fuelTrend7Days, kpiData } from '../../data/mockData'
 

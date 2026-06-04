@@ -1,7 +1,32 @@
-﻿import React from 'react'
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import L from 'leaflet'
 import Card from '../ui/Card'
 
+// Function to create a custom divIcon for markers
+const createCustomIcon = (fuelLevel) => {
+  const color = fuelLevel > 80 ? '#1abc9c' : fuelLevel > 30 ? '#f39c12' : '#e74c3c';
+  
+  return L.divIcon({
+    className: 'custom-leaflet-marker',
+    html: `
+      <div style="
+        width: 16px;
+        height: 16px;
+        background-color: ${color};
+        border-radius: 50%;
+        border: 2px solid white;
+        box-shadow: 0 0 4px rgba(0,0,0,0.4);
+      "></div>
+    `,
+    iconSize: [16, 16],
+    iconAnchor: [8, 8],
+  });
+};
+
 export default function FleetMap({ vehicles = [] }) {
+  // Center map on East Kalimantan (Samarinda)
+  const defaultCenter = [-0.5, 117.14];
+
   return (
     <Card>
       <div className="flex items-center justify-between">
@@ -12,25 +37,32 @@ export default function FleetMap({ vehicles = [] }) {
         </div>
       </div>
 
-      <div className="mt-3 h-64 bg-[#060d14] p-3">
-        <svg viewBox="0 0 800 400" className="h-full w-full">
-          <rect width="800" height="400" fill="#060d14" />
-          {/* grid */}
-          {Array.from({ length: 20 }).map((_, i) => (
-            <line key={i} x1={i * 40} y1={0} x2={i * 40} y2={400} stroke="#0a2540" strokeOpacity="0.4" />
-          ))}
-          {Array.from({ length: 10 }).map((_, i) => (
-            <line key={`h${i}`} x1={0} y1={i * 40} x2={800} y2={i * 40} stroke="#0a2540" strokeOpacity="0.4" />
-          ))}
+      <div className="mt-3 h-96 w-full overflow-hidden rounded-md border border-[var(--border)] z-0">
+        <MapContainer center={defaultCenter} zoom={10} scrollWheelZoom={true} className="h-full w-full z-0">
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+          />
+          
+          {vehicles.map((v) => {
+            // Use provided coordinates, fallback to default if missing
+            const position = v.lat && v.lng ? [v.lat, v.lng] : null;
+            if (!position) return null;
 
-          {/* markers */}
-          {vehicles.slice(0, 6).map((v, idx) => (
-            <g key={v.id} transform={`translate(${80 + idx * 100}, ${80 + (idx % 3) * 80})`}>
-              <circle r="10" fill={v.fuelLevel > 80 ? '#1abc9c' : v.fuelLevel > 30 ? '#f39c12' : '#e74c3c'} />
-              <text x="16" y="6" fill="#b0b0b0" fontSize="10">{v.id}</text>
-            </g>
-          ))}
-        </svg>
+            return (
+              <Marker key={v.id} position={position} icon={createCustomIcon(v.fuelLevel)}>
+                <Popup>
+                  <div className="text-sm">
+                    <strong>{v.id}</strong><br />
+                    Plate: {v.plateNumber}<br />
+                    Fuel: {v.fuelLevel}%<br />
+                    Status: <span className="capitalize">{v.status}</span>
+                  </div>
+                </Popup>
+              </Marker>
+            );
+          })}
+        </MapContainer>
       </div>
     </Card>
   )

@@ -1,4 +1,3 @@
-import React from 'react'
 import MainLayout from '../components/layout/MainLayout'
 import DocGrid from '../components/support/DocGrid'
 import FAQAccordion from '../components/support/FAQAccordion'
