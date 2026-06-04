@@ -42,15 +42,11 @@ export default function FleetMapStatic() {
         <MapContainer 
           center={defaultCenter} 
           zoom={10} 
-          scrollWheelZoom={false}
-          dragging={false}
-          zoomControl={false}
-          doubleClickZoom={false}
           className="h-full w-full z-0"
         >
           <TileLayer
-            attribution=''
-            url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png"
+            attribution='&copy; OpenStreetMap'
+            url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
           />
           
           {vehicles.map((v) => {
@@ -60,8 +56,6 @@ export default function FleetMapStatic() {
             );
           })}
         </MapContainer>
-        {/* Overlay to absolutely block interactions just in case */}
-        <div className="absolute inset-0 z-[1000] bg-transparent" />
       </div>
     </Card>
   )
