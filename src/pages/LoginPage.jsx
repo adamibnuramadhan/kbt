@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
+import AnimatedTruck from '../components/3d/AnimatedTruck'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
@@ -22,8 +23,15 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[var(--bg-primary)] px-4 text-[var(--text)]">
-      <div className="w-full max-w-sm">
+    <div className="flex min-h-screen bg-[var(--bg-primary)] text-[var(--text)]">
+      {/* 3D Animated Section - Hidden on mobile, visible on lg screens */}
+      <div className="hidden lg:block lg:w-1/2 relative">
+        <AnimatedTruck />
+      </div>
+
+      {/* Form Section */}
+      <div className="w-full lg:w-1/2 flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-12">
+        <div className="w-full max-w-md mx-auto">
         <div className="text-center mb-8">
           <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--primary)] text-lg font-bold text-white mb-4">F</div>
           <h1 className="font-display text-xl text-[var(--text)]">{t('login.welcomeBack')}</h1>
@@ -57,6 +65,7 @@ export default function LoginPage() {
         </Card>
 
         <p className="mt-6 text-center text-xs text-[var(--muted)]">{t('login.footer')}</p>
+        </div>
       </div>
     </div>
   )
