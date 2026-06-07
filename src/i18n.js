@@ -94,11 +94,11 @@ const resources = {
         ticketSub: 'Ticket {{ticket}} submitted. Response within 1.5 hours.',
         faqTitle: 'FREQUENTLY ASKED QUESTIONS',
         faqs: [
-          { q: 'How do I calibrate my fuel sensors?', a: 'Go to Settings > Vehicle Settings, select your vehicle, and click the "Calibrate" button. Ensure the vehicle is on a flat surface and the tank is at a known level.' },
-          { q: 'Can I export reports to Excel?', a: 'Yes. In the Analytics & Reports module, click the "Export" button in the top right and choose CSV/Excel format.' },
-          { q: 'What is the latency on fuel level updates?', a: 'Under the standard telemetry profile, updates arrive every 30 seconds. You can increase this to 10 seconds in Settings, but it will consume more data.' },
-          { q: 'How do I add a new operator?', a: 'Navigate to Operations Center > Drivers tab, and click "+ Add Driver". Fill in their details and assign them an active vehicle.' },
-          { q: 'What to do when a sensor disconnects?', a: 'Check the vehicle battery and the sensor wiring harness. If the hardware is intact, try restarting the telemetry unit via the Vehicle Modal in Fleet Inventory.' }
+          { question: 'How do I calibrate my fuel sensors?', answer: 'Go to Settings > Vehicle Settings, select your vehicle, and click the "Calibrate" button. Ensure the vehicle is on a flat surface and the tank is at a known level.' },
+          { question: 'Can I export reports to Excel?', answer: 'Yes. In the Analytics & Reports module, click the "Export" button in the top right and choose CSV/Excel format.' },
+          { question: 'What is the latency on fuel level updates?', answer: 'Under the standard telemetry profile, updates arrive every 30 seconds. You can increase this to 10 seconds in Settings, but it will consume more data.' },
+          { question: 'How do I add a new operator?', answer: 'Navigate to Operations Center > Drivers tab, and click "+ Add Driver". Fill in their details and assign them an active vehicle.' },
+          { question: 'What to do when a sensor disconnects?', answer: 'Check the vehicle battery and the sensor wiring harness. If the hardware is intact, try restarting the telemetry unit via the Vehicle Modal in Fleet Inventory.' }
         ]
       },
       settings: {
@@ -233,11 +233,11 @@ const resources = {
         ticketSub: 'Tiket {{ticket}} terkirim. Respon dalam 1,5 jam.',
         faqTitle: 'PERTANYAAN YANG SERING DIAJUKAN',
         faqs: [
-          { q: 'Bagaimana cara kalibrasi sensor bahan bakar?', a: 'Pergi ke Pengaturan > Pengaturan Kendaraan, pilih kendaraan Anda, dan klik tombol "Kalibrasi". Pastikan kendaraan berada di permukaan yang rata dan tangki berada pada tingkat yang diketahui.' },
-          { q: 'Bisakah saya mengekspor laporan ke Excel?', a: 'Ya. Di modul Analitik & Laporan, klik tombol "Ekspor" di kanan atas dan pilih format CSV/Excel.' },
-          { q: 'Berapa latensi pada pembaruan tingkat bahan bakar?', a: 'Di bawah profil telemetri standar, pembaruan tiba setiap 30 detik. Anda dapat meningkatkannya menjadi 10 detik di Pengaturan, tetapi akan memakan lebih banyak data.' },
-          { q: 'Bagaimana cara menambahkan operator baru?', a: 'Arahkan ke Pusat Operasi > tab Pengemudi, dan klik "+ Tambah Pengemudi". Isi detail mereka dan tetapkan kendaraan aktif.' },
-          { q: 'Apa yang harus dilakukan saat sensor terputus?', a: 'Periksa baterai kendaraan dan harnes kabel sensor. Jika perangkat keras masih utuh, coba mulai ulang unit telemetri melalui Modal Kendaraan di Inventaris Armada.' }
+          { question: 'Bagaimana cara kalibrasi sensor bahan bakar?', answer: 'Pergi ke Pengaturan > Pengaturan Kendaraan, pilih kendaraan Anda, dan klik tombol "Kalibrasi". Pastikan kendaraan berada di permukaan yang rata dan tangki berada pada tingkat yang diketahui.' },
+          { question: 'Bisakah saya mengekspor laporan ke Excel?', answer: 'Ya. Di modul Analitik & Laporan, klik tombol "Ekspor" di kanan atas dan pilih format CSV/Excel.' },
+          { question: 'Berapa latensi pada pembaruan tingkat bahan bakar?', answer: 'Di bawah profil telemetri standar, pembaruan tiba setiap 30 detik. Anda dapat meningkatkannya menjadi 10 detik di Pengaturan, tetapi akan memakan lebih banyak data.' },
+          { question: 'Bagaimana cara menambahkan operator baru?', answer: 'Arahkan ke Pusat Operasi > tab Pengemudi, dan klik "+ Tambah Pengemudi". Isi detail mereka dan tetapkan kendaraan aktif.' },
+          { question: 'Apa yang harus dilakukan saat sensor terputus?', answer: 'Periksa baterai kendaraan dan harnes kabel sensor. Jika perangkat keras masih utuh, coba mulai ulang unit telemetri melalui Modal Kendaraan di Inventaris Armada.' }
         ]
       },
       settings: {
