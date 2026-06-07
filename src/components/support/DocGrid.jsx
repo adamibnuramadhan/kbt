@@ -1,13 +1,17 @@
+import { useTranslation } from 'react-i18next'
 import Card from '../ui/Card'
 
-const docs = [
-  { icon: '📖', title: 'Technical Documentation', desc: 'Deep dive into sensor configurations and hardware specs.' },
-  { icon: '🎬', title: 'Video Tutorials', desc: 'Step-by-step visual guides for system setup.' },
-  { icon: '🔌', title: 'API Reference', desc: 'Integration guide for third-party ERP systems.' },
-  { icon: '📋', title: 'Changelog', desc: "Latest firmware and software updates." },
+const getDocs = (t) => [
+  { icon: '📖', title: t('support.docTech'), desc: t('support.docTechDesc') },
+  { icon: '🎬', title: t('support.docVideo'), desc: t('support.docVideoDesc') },
+  { icon: '🔌', title: t('support.docAPI'), desc: t('support.docAPIDesc') },
+  { icon: '📋', title: t('support.docChangelog'), desc: t('support.docChangelogDesc') },
 ]
 
 export default function DocGrid() {
+  const { t } = useTranslation()
+  const docs = getDocs(t)
+
   return (
     <div className="grid grid-cols-2 gap-4">
       {docs.map((d) => (

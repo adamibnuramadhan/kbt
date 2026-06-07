@@ -1,12 +1,14 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import Card from '../ui/Card'
 
 export default function FAQAccordion({ items = [] }) {
   const [openIndex, setOpenIndex] = useState(null)
+  const { t } = useTranslation()
 
   return (
     <div className="space-y-3">
-      <div className="text-sm font-semibold uppercase text-[var(--muted)]">FREQUENTLY ASKED QUESTIONS</div>
+      <div className="text-sm font-semibold uppercase text-[var(--muted)]">{t('support.faqTitle')}</div>
       <div className="space-y-2">
         {items.map((it, idx) => (
           <Card key={idx} className="p-3" hover>
