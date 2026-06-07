@@ -1,4 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import useUIStore from '../../store/useUIStore'
 import { alerts } from '../../data/mockData'
 import Badge from '../ui/Badge'
@@ -29,6 +30,7 @@ function Sidebar() {
   const theme = useUIStore((state) => state.theme)
   const setTheme = useUIStore((state) => state.setTheme)
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   const handleLogout = () => {
     clearAuthAndLogout()
@@ -49,7 +51,7 @@ function Sidebar() {
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--primary)] text-xs font-bold text-white">F</div>
               <div>
                 <p className="font-display text-sm text-[var(--text)]">FuelGuard</p>
-                <p className="text-[10px] tracking-widest text-[var(--muted)]">MONITORING</p>
+                <p className="text-[10px] tracking-widest text-[var(--muted)]">{t('sidebar.monitoring')}</p>
               </div>
             </div>
           ) : (
@@ -72,7 +74,7 @@ function Sidebar() {
 
         {sidebarOpen && (
           <div className="mb-2 px-4">
-            <p className="px-2 text-[10px] font-medium uppercase tracking-wider text-[var(--muted)]">Navigation</p>
+            <p className="px-2 text-[10px] font-medium uppercase tracking-wider text-[var(--muted)]">{t('sidebar.navigation')}</p>
           </div>
         )}
 
@@ -81,7 +83,7 @@ function Sidebar() {
             <NavLink
               key={item.path}
               to={item.path}
-              title={!sidebarOpen ? item.label : undefined}
+              title={!sidebarOpen ? t(`sidebar.${item.label.toLowerCase()}`) : undefined}
               className={({ isActive }) =>
                 `group relative flex items-center rounded-lg px-3 py-2 text-[13px] transition-all duration-150 ${
                   sidebarOpen ? 'justify-start gap-3' : 'justify-center'
@@ -94,7 +96,7 @@ function Sidebar() {
               <span className="inline-flex items-center justify-center shrink-0">
                 <Icon d={item.icon} />
               </span>
-              {sidebarOpen && <span className="flex-1 font-medium">{item.label}</span>}
+              {sidebarOpen && <span className="flex-1 font-medium">{t(`sidebar.${item.label.toLowerCase()}`)}</span>}
               {item.label === 'Fleet' && alerts.length > 0 && (
                 sidebarOpen ? (
                   <Badge variant="error" size="sm" className="ml-auto">
@@ -106,14 +108,14 @@ function Sidebar() {
               )}
               {!sidebarOpen && (
                 <span className="pointer-events-none absolute left-full top-1/2 ml-3 hidden -translate-y-1/2 rounded-lg bg-[var(--bg-elevated)] px-2.5 py-1.5 text-xs font-medium text-[var(--text)] shadow-[var(--shadow-float)] group-hover:block whitespace-nowrap z-50">
-                  {item.label}
+                  {t(`sidebar.${item.label.toLowerCase()}`)}
                 </span>
               )}
             </NavLink>
           ))}
         </nav>
         {filteredNavItems.length === 0 && (
-          <div className="px-5 py-3 text-xs text-[var(--muted)]">No results</div>
+          <div className="px-5 py-3 text-xs text-[var(--muted)]">{t('sidebar.noResults')}</div>
         )}
       </div>
 
@@ -126,7 +128,7 @@ function Sidebar() {
             />
             {sidebarOpen && (
               <span className="text-xs text-[var(--muted)] select-none cursor-pointer" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
-                {theme === 'dark' ? 'Dark' : 'Light'}
+                {theme === 'dark' ? t('settings.darkMode') : t('settings.lightMode')}
               </span>
             )}
           </div>
@@ -134,16 +136,16 @@ function Sidebar() {
 
         <button
           onClick={handleLogout}
-          title={!sidebarOpen ? 'Logout' : undefined}
+          title={!sidebarOpen ? t('sidebar.logout') : undefined}
           className={`group relative flex w-full items-center rounded-lg px-3 py-2 text-[13px] text-[var(--muted)] transition-colors hover:bg-[var(--error)]/8 hover:text-[var(--error)] ${sidebarOpen ? 'gap-3' : 'justify-center'}`}
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          {sidebarOpen && <span className="font-medium">Logout</span>}
+          {sidebarOpen && <span className="font-medium">{t('sidebar.logout')}</span>}
           {!sidebarOpen && (
             <span className="pointer-events-none absolute left-full bottom-1/2 translate-y-1/2 ml-3 hidden rounded-lg bg-[var(--bg-elevated)] px-2.5 py-1.5 text-xs font-medium text-[var(--text)] shadow-[var(--shadow-float)] group-hover:block whitespace-nowrap z-50">
-              Logout
+              {t('sidebar.logout')}
             </span>
           )}
         </button>

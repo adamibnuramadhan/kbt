@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import TabNav from '../components/reports/TabNav'
 import ConsumptionChart from '../components/reports/ConsumptionChart'
 import EfficiencyChart from '../components/reports/EfficiencyChart'
@@ -11,7 +12,8 @@ import useFuelLogStore from '../store/useFuelLogStore'
 import useMaintenanceStore from '../store/useMaintenanceStore'
 import useFleetStore from '../store/useFleetStore'
 
-const TABS = ['Consumption', 'Efficiency', 'Route', 'Predictive', 'Fuel Logs', 'Maintenance']
+// This will be moved inside the component to use 't'
+const getTabs = (t) => ['Consumption', 'Efficiency', 'Route', 'Predictive', t('operations.fuelLogs'), t('operations.maintenance')]
 
 const currency = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 })
 
@@ -25,6 +27,9 @@ export default function ReportsPage() {
   const { fuelLogs } = useFuelLogStore()
   const { maintenanceLogs } = useMaintenanceStore()
   const { vehicles } = useFleetStore()
+  const { t } = useTranslation()
+
+  const TABS = getTabs(t)
 
   const vehicleMap = Object.fromEntries(vehicles.map((vehicle) => [vehicle.id, vehicle]))
 
@@ -38,8 +43,8 @@ export default function ReportsPage() {
     <MainLayout>
       <div className="space-y-6">
         <div>
-          <div className="text-2xl font-display">Analytics & Reports</div>
-          <div className="text-sm text-[var(--muted)]">Detailed performance metrics and fuel telemetry insights.</div>
+          <div className="text-2xl font-display">{t('reports.title')}</div>
+          <div className="text-sm text-[var(--muted)]">{t('reports.subtitle')}</div>
         </div>
 
         <div>
@@ -48,7 +53,7 @@ export default function ReportsPage() {
               <TabNav tabs={TABS} active={active} onChange={setActive} />
             </div>
             <div className="flex items-center gap-2">
-              <button className="rounded bg-[var(--primary)] px-3 py-2 text-sm text-white">Export PDF</button>
+              <button className="rounded bg-[var(--primary)] px-3 py-2 text-sm text-white">{t('reports.exportReport')} (PDF)</button>
             </div>
           </div>
         </div>
@@ -100,7 +105,7 @@ export default function ReportsPage() {
             </div>
           )}
 
-          {active === 'Fuel Logs' && (
+          {active === t('operations.fuelLogs') && (
             <div className="space-y-4">
               <div className="grid grid-cols-3 gap-4">
                 <Card className="p-4"><div className="text-sm text-[var(--muted)]">Total Logs</div><div className="mt-2 text-2xl font-bold">{fuelSummary.totalLogs}</div></Card>
@@ -136,7 +141,7 @@ export default function ReportsPage() {
             </div>
           )}
 
-          {active === 'Maintenance' && (
+          {active === t('operations.maintenance') && (
             <div className="space-y-4">
               <Card>
                 <div className="text-sm font-semibold text-[var(--muted)]">Service Queue</div>

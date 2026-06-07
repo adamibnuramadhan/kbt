@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
 
@@ -8,11 +9,12 @@ export default function LoginPage() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   function handleSubmit(e) {
     e.preventDefault()
     if (password !== 'admin') {
-      setError('Invalid credentials')
+      setError(t('login.invalidCredentials'))
       return
     }
     localStorage.setItem('fg_auth', JSON.stringify({ email }))
@@ -24,14 +26,14 @@ export default function LoginPage() {
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
           <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--primary)] text-lg font-bold text-white mb-4">F</div>
-          <h1 className="font-display text-xl text-[var(--text)]">Welcome back</h1>
-          <p className="mt-1 text-sm text-[var(--muted)]">Sign in to FuelGuard</p>
+          <h1 className="font-display text-xl text-[var(--text)]">{t('login.welcomeBack')}</h1>
+          <p className="mt-1 text-sm text-[var(--muted)]">{t('login.signInTo')}</p>
         </div>
 
         <Card>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-xs font-medium text-[var(--text-secondary)] mb-1.5">Email</label>
+              <label className="block text-xs font-medium text-[var(--text-secondary)] mb-1.5">{t('login.email')}</label>
               <input
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -40,7 +42,7 @@ export default function LoginPage() {
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-[var(--text-secondary)] mb-1.5">Password</label>
+              <label className="block text-xs font-medium text-[var(--text-secondary)] mb-1.5">{t('login.password')}</label>
               <input
                 type="password"
                 value={password}
@@ -50,11 +52,11 @@ export default function LoginPage() {
               />
             </div>
             {error && <div className="text-xs text-[var(--error)]">{error}</div>}
-            <Button type="submit" variant="primary" className="w-full">Sign in</Button>
+            <Button type="submit" variant="primary" className="w-full">{t('login.signIn')}</Button>
           </form>
         </Card>
 
-        <p className="mt-6 text-center text-xs text-[var(--muted)]">FuelGuard v2.0 · Fuel Monitoring System</p>
+        <p className="mt-6 text-center text-xs text-[var(--muted)]">{t('login.footer')}</p>
       </div>
     </div>
   )

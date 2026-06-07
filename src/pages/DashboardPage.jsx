@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import MainLayout from '../components/layout/MainLayout'
 import KPICard from '../components/dashboard/KPICard'
 import AlertPanel from '../components/dashboard/AlertPanel'
@@ -10,6 +11,7 @@ import Skeleton from '../components/ui/Skeleton'
 
 function DashboardPage() {
   const [loading, setLoading] = useState(true)
+  const { t } = useTranslation()
 
   useEffect(() => {
     const t = setTimeout(() => setLoading(false), 800)
@@ -20,8 +22,8 @@ function DashboardPage() {
     <MainLayout>
       <div className="space-y-8">
         <div>
-          <h1 className="font-display text-2xl text-[var(--text)]">Good morning, Pratama</h1>
-          <p className="mt-2 text-sm text-[var(--text-secondary)]">System diagnostics are normal. Fleet efficiency up 4.2% this week.</p>
+          <h1 className="font-display text-2xl text-[var(--text)]">{t('dashboard.greeting')}</h1>
+          <p className="mt-2 text-sm text-[var(--text-secondary)]">{t('dashboard.systemNormal')}</p>
         </div>
 
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
@@ -29,10 +31,10 @@ function DashboardPage() {
             Array.from({ length: 4 }).map((_, i) => <Skeleton key={i} height={130} />)
           ) : (
             <>
-              <KPICard title="TOTAL FUEL USED TODAY" value={`${kpiData.totalFuelToday} L`} unit="Liters" change="-12% vs yesterday" />
-              <KPICard title="AVERAGE EFFICIENCY" value={`${kpiData.avgEfficiency} km/l`} unit="km/L" change={`↑ ${kpiData.efficiencyChange} km/l`} />
-              <KPICard title="ACTIVE VEHICLES" value={`${kpiData.activeVehicles}/${kpiData.totalVehicles}`} unit="Units" change={null} />
-              <KPICard title="EST. SAVINGS" value={`Rp ${kpiData.estimatedSavings}M`} unit="" change={kpiData.savingsPeriod} />
+              <KPICard title={t('dashboard.totalFuel')} value={`${kpiData.totalFuelToday} L`} unit={t('dashboard.liters')} change={t('dashboard.vsYesterday')} />
+              <KPICard title={t('dashboard.avgEfficiency')} value={`${kpiData.avgEfficiency} km/l`} unit="km/L" change={`↑ ${kpiData.efficiencyChange} km/l`} />
+              <KPICard title={t('dashboard.activeVehicles')} value={`${kpiData.activeVehicles}/${kpiData.totalVehicles}`} unit={t('dashboard.units')} change={null} />
+              <KPICard title={t('dashboard.estSavings')} value={`Rp ${kpiData.estimatedSavings}M`} unit="" change={kpiData.savingsPeriod} />
             </>
           )}
         </div>

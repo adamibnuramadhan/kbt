@@ -5,6 +5,7 @@ const useUIStore = create(
   persist(
     (set) => ({
       theme: 'dark',
+      language: 'en',
       sidebarOpen: true,
       navSearchQuery: '',
       notifications: [],
@@ -14,6 +15,7 @@ const useUIStore = create(
         if (typeof document !== 'undefined') document.documentElement.dataset.theme = theme
         set({ theme })
       },
+      setLanguage: (language) => set({ language }),
       toggleSidebar: () => set((state) => ({ sidebarOpen: !state.sidebarOpen })),
       setNavSearchQuery: (navSearchQuery) => set({ navSearchQuery }),
       setNotifications: (notifications) => set({ notifications }),
@@ -26,7 +28,7 @@ const useUIStore = create(
     }),
     {
       name: 'fg-ui-store',
-      partialize: (state) => ({ theme: state.theme, sidebarOpen: state.sidebarOpen }),
+      partialize: (state) => ({ theme: state.theme, language: state.language, sidebarOpen: state.sidebarOpen }),
     },
   ),
 )

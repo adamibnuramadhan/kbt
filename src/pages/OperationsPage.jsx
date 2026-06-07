@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import MainLayout from '../components/layout/MainLayout'
 import Card from '../components/ui/Card'
 import Badge from '../components/ui/Badge'
@@ -9,10 +10,11 @@ import useDriverStore from '../store/useDriverStore'
 import useFuelLogStore from '../store/useFuelLogStore'
 import useMaintenanceStore from '../store/useMaintenanceStore'
 
-const TABS = [
-  { key: 'fuel', label: 'Fuel Logs' },
-  { key: 'drivers', label: 'Drivers' },
-  { key: 'maintenance', label: 'Maintenance' },
+// This will be moved inside the component to access 't'
+const getTabs = (t) => [
+  { key: 'fuel', label: t('operations.fuelLogs') },
+  { key: 'drivers', label: t('operations.drivers') },
+  { key: 'maintenance', label: t('operations.maintenance') },
 ]
 
 const today = new Date().toISOString().slice(0, 10)
@@ -47,6 +49,9 @@ export default function OperationsPage() {
   const [activeTab, setActiveTab] = useState('fuel')
   const [selectedVehicleId, setSelectedVehicleId] = useState('all')
   const [modalState, setModalState] = useState({ open: false, kind: null, record: null })
+  const { t } = useTranslation()
+
+  const TABS = getTabs(t)
 
   const vehicleOptions = useMemo(() => vehicles.map((vehicle) => ({ value: vehicle.id, label: vehicleLabel(vehicle) })), [vehicles])
   const vehicleMap = useMemo(() => Object.fromEntries(vehicles.map((vehicle) => [vehicle.id, vehicle])), [vehicles])
@@ -293,9 +298,9 @@ export default function OperationsPage() {
     <MainLayout>
       <div className="space-y-6">
         <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-[var(--muted)]">Operations Center</p>
-          <h1 className="mt-2 font-display text-3xl">Fuel, Driver, and Maintenance Logs</h1>
-          <p className="mt-1 text-sm text-[var(--text-secondary)]">CRUD terpusat untuk log pengisian BBM, pengemudi aktif, dan jadwal servis kendaraan.</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-[var(--muted)]">{t('operations.title')}</p>
+          <h1 className="mt-2 font-display text-3xl">{t('operations.subtitle')}</h1>
+          <p className="mt-1 text-sm text-[var(--text-secondary)]">{t('operations.desc')}</p>
         </div>
 
         <div className="flex flex-wrap gap-2">

@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import MainLayout from '../components/layout/MainLayout'
 import SettingsMenu from '../components/settings/SettingsMenu'
 import ProfileForm from '../components/settings/ProfileForm'
@@ -21,6 +22,11 @@ export default function SettingsPage() {
   const [notifToggles, setNotifToggles] = useState({ lowFuel: true, unauthorized: true, weeklyReport: false })
   const [darkMode, setDarkMode] = useState(useUIStore.getState().theme === 'dark')
   const setTheme = useUIStore((s) => s.setTheme)
+  const language = useUIStore((s) => s.language)
+  const setLanguage = useUIStore((s) => s.setLanguage)
+  const { t, i18n } = useTranslation()
+
+  const translatedMenu = MENU.map(m => ({ ...m, label: t(`settings.menu.${m.key}`) }))
 
   function toggleNotif(k) {
     setNotifToggles((s) => ({ ...s, [k]: !s[k] }))
@@ -37,11 +43,11 @@ export default function SettingsPage() {
         <div className="lg:col-span-1">
           <Card noPadding>
             <div className="p-5">
-              <h3 className="font-display text-sm text-[var(--text)]">Settings</h3>
-              <p className="text-xs text-[var(--muted)] mt-1">Manage preferences</p>
+              <h3 className="font-display text-sm text-[var(--text)]">{t('settings.title')}</h3>
+              <p className="text-xs text-[var(--muted)] mt-1">{t('settings.subtitle')}</p>
             </div>
             <div className="p-4 pt-0">
-              <SettingsMenu items={MENU} active={active} onSelect={setActive} />
+              <SettingsMenu items={translatedMenu} active={active} onSelect={setActive} />
             </div>
           </Card>
         </div>
@@ -51,8 +57,8 @@ export default function SettingsPage() {
             {active === 'account' && (
               <Card>
                 <div>
-                  <h2 className="font-display text-lg text-[var(--text)]">Account Preferences</h2>
-                  <p className="text-sm text-[var(--muted)] mt-1">Update profile and company information.</p>
+                  <h2 className="font-display text-lg text-[var(--text)]">{t('settings.accountPrefs')}</h2>
+                  <p className="text-sm text-[var(--muted)] mt-1">{t('settings.accountPrefsDesc')}</p>
                 </div>
                 <div className="mt-5"><ProfileForm /></div>
               </Card>
@@ -60,23 +66,23 @@ export default function SettingsPage() {
 
             {active === 'notifications' && (
               <Card>
-                <h2 className="font-display text-lg text-[var(--text)]">Notification Settings</h2>
+                <h2 className="font-display text-lg text-[var(--text)]">{t('settings.notifSettings')}</h2>
                 <div className="mt-5 space-y-4">
-                  <div className="flex items-center justify-between"><div className="text-[13px] text-[var(--text-secondary)]">Critical Low Fuel Warning (&lt;10%)</div><Toggle checked={notifToggles.lowFuel} onChange={() => toggleNotif('lowFuel')} /></div>
-                  <div className="flex items-center justify-between"><div className="text-[13px] text-[var(--text-secondary)]">Unauthorized Access Attempt</div><Toggle checked={notifToggles.unauthorized} onChange={() => toggleNotif('unauthorized')} /></div>
-                  <div className="flex items-center justify-between"><div className="text-[13px] text-[var(--text-secondary)]">Weekly Efficiency Report</div><Toggle checked={notifToggles.weeklyReport} onChange={() => toggleNotif('weeklyReport')} /></div>
+                  <div className="flex items-center justify-between"><div className="text-[13px] text-[var(--text-secondary)]">{t('settings.notifLowFuel')}</div><Toggle checked={notifToggles.lowFuel} onChange={() => toggleNotif('lowFuel')} /></div>
+                  <div className="flex items-center justify-between"><div className="text-[13px] text-[var(--text-secondary)]">{t('settings.notifUnauthorized')}</div><Toggle checked={notifToggles.unauthorized} onChange={() => toggleNotif('unauthorized')} /></div>
+                  <div className="flex items-center justify-between"><div className="text-[13px] text-[var(--text-secondary)]">{t('settings.notifWeekly')}</div><Toggle checked={notifToggles.weeklyReport} onChange={() => toggleNotif('weeklyReport')} /></div>
                 </div>
                 <div className="mt-6 grid grid-cols-1 gap-5 lg:grid-cols-2" style={{ borderTop: '1px solid var(--border)', paddingTop: '20px' }}>
                   <div>
-                    <div className="text-xs font-medium text-[var(--muted)] uppercase tracking-wider">Interface Theme</div>
-                    <div className="mt-2"><Toggle checked={darkMode} onChange={handleThemeChange} label={darkMode ? 'Dark Mode' : 'Light Mode'} /></div>
+                    <div className="text-xs font-medium text-[var(--muted)] uppercase tracking-wider">{t('settings.interfaceTheme')}</div>
+                    <div className="mt-2"><Toggle checked={darkMode} onChange={handleThemeChange} label={darkMode ? t('settings.darkMode') : t('settings.lightMode')} /></div>
                   </div>
                   <div>
-                    <div className="text-xs font-medium text-[var(--muted)] uppercase tracking-wider">Telemetry Refresh</div>
+                    <div className="text-xs font-medium text-[var(--muted)] uppercase tracking-wider">{t('settings.telemetryRefresh')}</div>
                     <select className="mt-2 w-full rounded-[var(--radius-button)] bg-[var(--bg-primary)] border border-[var(--border-strong)] px-3 py-2 text-[13px] text-[var(--text)] focus:outline-none focus:border-[var(--primary)]/40">
-                      <option>Standard (30 seconds)</option>
-                      <option>Fast (10 seconds)</option>
-                      <option>Slow (60 seconds)</option>
+                      <option>{t('settings.telemetryStandard')}</option>
+                      <option>{t('settings.telemetryFast')}</option>
+                      <option>{t('settings.telemetrySlow')}</option>
                     </select>
                   </div>
                 </div>
@@ -86,8 +92,8 @@ export default function SettingsPage() {
             {active === 'users' && (
               <Card>
                 <div className="flex items-center justify-between">
-                  <h2 className="font-display text-lg text-[var(--text)]">User Management</h2>
-                  <button className="rounded-[var(--radius-button)] border border-[var(--border-strong)] px-3 py-1.5 text-xs font-medium text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] transition-colors">+ Add Operator</button>
+                  <h2 className="font-display text-lg text-[var(--text)]">{t('settings.userMgmt')}</h2>
+                  <button className="rounded-[var(--radius-button)] border border-[var(--border-strong)] px-3 py-1.5 text-xs font-medium text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] transition-colors">{t('settings.addOperator')}</button>
                 </div>
                 <div className="mt-5 grid grid-cols-1 gap-3 lg:grid-cols-2">
                   {mockUsers.slice(0, 4).map((u) => (
@@ -99,16 +105,16 @@ export default function SettingsPage() {
 
             {active === 'vehicles' && (
               <Card>
-                <h2 className="font-display text-lg text-[var(--text)]">Vehicle Settings</h2>
-                <p className="mt-1 text-sm text-[var(--muted)]">Hardware & sensor calibration, fuel probe settings, and telemetry routing.</p>
+                <h2 className="font-display text-lg text-[var(--text)]">{t('settings.vehicleSettings')}</h2>
+                <p className="mt-1 text-sm text-[var(--muted)]">{t('settings.vehicleSettingsDesc')}</p>
                 <div className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-2">
                   <div className="rounded-lg bg-[var(--bg-primary)] p-4">
-                    <div className="text-[13px] font-medium text-[var(--text)]">Cap-Secure Sensors</div>
-                    <div className="mt-1 text-xs text-[var(--muted)]">Status: <span className="text-[var(--success)]">Calibrated</span> · Ver v2.4.1-G</div>
+                    <div className="text-[13px] font-medium text-[var(--text)]">{t('settings.capSecure')}</div>
+                    <div className="mt-1 text-xs text-[var(--muted)]">{t('settings.status')}: <span className="text-[var(--success)]">{t('settings.calibrated')}</span> · {t('settings.calibrated').includes('Kalibrasi') ? 'Versi v2.4.1-G' : 'Ver v2.4.1-G'}</div>
                   </div>
                   <div className="rounded-lg bg-[var(--bg-primary)] p-4">
-                    <div className="text-[13px] font-medium text-[var(--text)]">GPS Mesh Sync</div>
-                    <div className="mt-1 text-xs text-[var(--muted)]">Signal Strength 92% · Encryption AES-256</div>
+                    <div className="text-[13px] font-medium text-[var(--text)]">{t('settings.gpsMesh')}</div>
+                    <div className="mt-1 text-xs text-[var(--muted)]">{t('settings.signalStrength')}</div>
                   </div>
                 </div>
               </Card>
@@ -116,26 +122,34 @@ export default function SettingsPage() {
 
             {active === 'appearance' && (
               <Card>
-                <h2 className="font-display text-lg text-[var(--text)]">Appearance</h2>
+                <h2 className="font-display text-lg text-[var(--text)]">{t('settings.appearance')}</h2>
                 <div className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-2">
                   <div>
-                    <div className="text-xs font-medium text-[var(--muted)] uppercase tracking-wider">Theme</div>
-                    <div className="mt-2"><Toggle checked={darkMode} onChange={handleThemeChange} label={darkMode ? 'Dark' : 'Light'} /></div>
+                    <div className="text-xs font-medium text-[var(--muted)] uppercase tracking-wider">{t('settings.theme')}</div>
+                    <div className="mt-2"><Toggle checked={darkMode} onChange={handleThemeChange} label={darkMode ? t('settings.darkMode') : t('settings.lightMode')} /></div>
                   </div>
                   <div>
-                    <div className="text-xs font-medium text-[var(--muted)] uppercase tracking-wider">Sidebar Width</div>
+                    <div className="text-xs font-medium text-[var(--muted)] uppercase tracking-wider">{t('settings.sidebarWidth')}</div>
                     <select className="mt-2 w-full rounded-[var(--radius-button)] bg-[var(--bg-primary)] border border-[var(--border-strong)] px-3 py-2 text-[13px] text-[var(--text)] focus:outline-none focus:border-[var(--primary)]/40">
-                      <option>248px (default)</option>
-                      <option>200px</option>
-                      <option>320px</option>
+                      <option>{t('settings.widthDefault')}</option>
+                      <option>{t('settings.widthSmall')}</option>
+                      <option>{t('settings.widthLarge')}</option>
                     </select>
                   </div>
                 </div>
                 <div className="mt-5">
-                  <div className="text-xs font-medium text-[var(--muted)] uppercase tracking-wider">Language</div>
-                  <select className="mt-2 w-48 rounded-[var(--radius-button)] bg-[var(--bg-primary)] border border-[var(--border-strong)] px-3 py-2 text-[13px] text-[var(--text)] focus:outline-none focus:border-[var(--primary)]/40">
-                    <option>Bahasa Indonesia</option>
-                    <option>English</option>
+                  <div className="text-xs font-medium text-[var(--muted)] uppercase tracking-wider">{t('settings.language')}</div>
+                  <select 
+                    value={language}
+                    onChange={(e) => {
+                      const newLang = e.target.value
+                      setLanguage(newLang)
+                      i18n.changeLanguage(newLang)
+                    }}
+                    className="mt-2 w-48 rounded-[var(--radius-button)] bg-[var(--bg-primary)] border border-[var(--border-strong)] px-3 py-2 text-[13px] text-[var(--text)] focus:outline-none focus:border-[var(--primary)]/40"
+                  >
+                    <option value="id">Bahasa Indonesia</option>
+                    <option value="en">English</option>
                   </select>
                 </div>
               </Card>
