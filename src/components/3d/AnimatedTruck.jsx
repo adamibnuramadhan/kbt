@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, ContactShadows } from '@react-three/drei'
 
-function MapPin() {
+function MapPin(props) {
   const pinRef = useRef()
 
   useFrame((state) => {
@@ -16,7 +16,7 @@ function MapPin() {
   })
 
   return (
-    <group ref={pinRef}>
+    <group ref={pinRef} {...props}>
       {/* Top Sphere */}
       <mesh position={[0, 0.4, 0]} castShadow>
         <sphereGeometry args={[0.3, 32, 32]} />
@@ -134,6 +134,68 @@ function Truck(props) {
   )
 }
 
+function OppositeCar(props) {
+  const carRef = useRef()
+  const wheelsRef = useRef([])
+
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime()
+    if (carRef.current) {
+      // Bounce
+      carRef.current.position.y = Math.sin(t * 20) * 0.02
+      // Move fast along -Z
+      carRef.current.position.z -= 0.45
+      if (carRef.current.position.z < -20) {
+        carRef.current.position.z = 20
+      }
+    }
+    
+    // Rotate wheels
+    wheelsRef.current.forEach(wheel => {
+      if (wheel) wheel.rotation.x -= 0.45 // moving -Z, wheels rotate backwards
+    })
+  })
+
+  // Toon materials
+  const bodyMaterial = <meshToonMaterial color="#ef4444" /> // Red car
+  const windowMaterial = <meshToonMaterial color="#93c5fd" />
+  const wheelMaterial = <meshToonMaterial color="#1f2937" />
+
+  return (
+    <group ref={carRef} position={[-1.5, 0, 10]} rotation={[0, Math.PI, 0]} {...props}>
+      {/* Body */}
+      <mesh position={[0, 0.4, 0]} castShadow>
+        <boxGeometry args={[1.2, 0.6, 2.5]} />
+        {bodyMaterial}
+      </mesh>
+      {/* Cabin top */}
+      <mesh position={[0, 0.8, -0.2]} castShadow>
+        <boxGeometry args={[1, 0.5, 1.2]} />
+        {bodyMaterial}
+      </mesh>
+      {/* Windshield */}
+      <mesh position={[0, 0.8, 0.41]}>
+        <planeGeometry args={[0.9, 0.4]} />
+        {windowMaterial}
+      </mesh>
+      {/* Wheels */}
+      {[
+        [-0.7, 0.1, 0.8], // Front Left
+        [0.7, 0.1, 0.8],  // Front Right
+        [-0.7, 0.1, -0.8], // Back Left
+        [0.7, 0.1, -0.8],  // Back Right
+      ].map((pos, i) => (
+        <group key={i} position={pos}>
+          <mesh ref={el => wheelsRef.current[i] = el} rotation={[0, 0, Math.PI / 2]} castShadow>
+            <cylinderGeometry args={[0.25, 0.25, 0.2, 16]} />
+            {wheelMaterial}
+          </mesh>
+        </group>
+      ))}
+    </group>
+  )
+}
+
 function Road() {
   const roadRef = useRef()
 
@@ -188,8 +250,9 @@ export default function AnimatedTruck() {
           />
           <hemisphereLight intensity={0.3} groundColor="#000000" />
           
-          <MapPin />
-          <Truck scale={0.75} />
+          <MapPin position={[1.5, 0, 0]} />
+          <Truck position={[1.5, 0, 0]} scale={0.75} />
+          <OppositeCar scale={0.75} />
           <Road />
           
           <ContactShadows position={[0, -0.19, 0]} opacity={0.7} scale={15} blur={1.5} far={4} color="#000000" />
