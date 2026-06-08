@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, ContactShadows } from '@react-three/drei'
+import useUIStore from '../../store/useUIStore'
 
 function MapPin(props) {
   const pinRef = useRef()
@@ -230,11 +231,14 @@ function Road() {
 }
 
 export default function AnimatedTruck() {
+  const theme = useUIStore((s) => s.theme)
+  const bgColor = theme === 'light' ? '#f8f9fb' : '#0c0e14'
+
   return (
     <div className="w-full h-full min-h-[200px] lg:min-h-screen bg-[var(--bg-primary)] relative overflow-hidden flex items-center justify-center">
       <div className="absolute inset-0 z-0">
         <Canvas shadows camera={{ position: [6, 4, 8], fov: 40 }}>
-          <fog attach="fog" args={['var(--bg-primary)', 10, 30]} />
+          <fog attach="fog" args={[bgColor, 10, 30]} />
           
           <ambientLight intensity={0.6} />
           <directionalLight 
