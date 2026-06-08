@@ -269,11 +269,11 @@ export default function AnimatedTruck() {
       </div>
       
       {/* Overlay gradient to blend with the page */}
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, transparent 0%, var(--bg-primary) 75%)' }} />
-      <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-[var(--bg-primary)] via-[var(--bg-primary)]/50 to-transparent pointer-events-none" />
-      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)]/50 to-transparent pointer-events-none" />
-      <div className="absolute top-0 bottom-0 left-0 w-64 bg-gradient-to-r from-[var(--bg-primary)] via-[var(--bg-primary)]/50 to-transparent pointer-events-none" />
-      <div className="absolute top-0 bottom-0 right-0 w-64 bg-gradient-to-l from-[var(--bg-primary)] via-[var(--bg-primary)]/50 to-transparent pointer-events-none" />
+      <div className="hidden lg:block absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, transparent 0%, var(--bg-primary) 75%)' }} />
+      <div className="hidden lg:block absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-[var(--bg-primary)] via-[var(--bg-primary)]/50 to-transparent pointer-events-none" />
+      <div className="hidden lg:block absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)]/50 to-transparent pointer-events-none" />
+      <div className="hidden lg:block absolute top-0 bottom-0 left-0 w-64 bg-gradient-to-r from-[var(--bg-primary)] via-[var(--bg-primary)]/50 to-transparent pointer-events-none" />
+      <div className="hidden lg:block absolute top-0 bottom-0 right-0 w-64 bg-gradient-to-l from-[var(--bg-primary)] via-[var(--bg-primary)]/50 to-transparent pointer-events-none" />
       
       <div className="absolute bottom-8 left-8 right-8 text-center pointer-events-none z-10 hidden lg:block">
         <h2 className="text-3xl font-display font-bold text-[var(--text)] mb-2 tracking-tight">Fuel Monitoring System</h2>
