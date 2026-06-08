@@ -231,7 +231,7 @@ function Road() {
 
 export default function AnimatedTruck() {
   return (
-    <div className="w-full h-full min-h-[400px] lg:min-h-screen bg-[var(--bg-primary)] relative overflow-hidden flex items-center justify-center">
+    <div className="w-full h-full min-h-[200px] lg:min-h-screen bg-[var(--bg-primary)] relative overflow-hidden flex items-center justify-center">
       <div className="absolute inset-0 z-0">
         <Canvas shadows camera={{ position: [6, 4, 8], fov: 40 }}>
           <fog attach="fog" args={['var(--bg-primary)', 10, 30]} />

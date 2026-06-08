@@ -39,6 +39,10 @@ export default function LoginPage() {
           <p className="mt-1 text-sm text-[var(--muted)]">{t('login.signInTo')}</p>
         </div>
 
+        <div className="lg:hidden w-1/2 mx-auto h-48 relative mb-8 rounded-[var(--radius-card)] overflow-hidden border border-[var(--border)]">
+          <AnimatedTruck />
+        </div>
+
         <Card>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
