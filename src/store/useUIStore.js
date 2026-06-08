@@ -17,6 +17,7 @@ const useUIStore = create(
       },
       setLanguage: (language) => set({ language }),
       toggleSidebar: () => set((state) => ({ sidebarOpen: !state.sidebarOpen })),
+      setSidebarOpen: (isOpen) => set({ sidebarOpen: isOpen }),
       setNavSearchQuery: (navSearchQuery) => set({ navSearchQuery }),
       setNotifications: (notifications) => set({ notifications }),
       toggleNotifPanel: () => set((s) => ({ notifPanelOpen: !s.notifPanelOpen })),

@@ -25,6 +25,7 @@ function Icon({ d }) {
 function Sidebar() {
   const sidebarOpen = useUIStore((state) => state.sidebarOpen)
   const toggleSidebar = useUIStore((state) => state.toggleSidebar)
+  const setSidebarOpen = useUIStore((state) => state.setSidebarOpen)
   const clearAuthAndLogout = useUIStore((state) => state.clearAuthAndLogout)
   const navSearchQuery = useUIStore((state) => state.navSearchQuery)
   const theme = useUIStore((state) => state.theme)
@@ -35,6 +36,12 @@ function Sidebar() {
   const handleLogout = () => {
     clearAuthAndLogout()
     navigate('/login')
+  }
+
+  const handleNavItemClick = () => {
+    if (window.innerWidth < 768) {
+      setSidebarOpen(false)
+    }
   }
 
   const filteredNavItems = navItems.filter((item) => item.label.toLowerCase().includes(navSearchQuery.toLowerCase()))
@@ -83,6 +90,7 @@ function Sidebar() {
             <NavLink
               key={item.path}
               to={item.path}
+              onClick={handleNavItemClick}
               title={!sidebarOpen ? t(`sidebar.${item.label.toLowerCase()}`) : undefined}
               className={({ isActive }) =>
                 `group relative flex items-center rounded-lg px-3 py-2 text-[13px] transition-all duration-150 ${

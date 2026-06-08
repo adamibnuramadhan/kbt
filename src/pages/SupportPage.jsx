@@ -15,14 +15,14 @@ export default function SupportPage() {
           <p className="mt-1 text-sm text-[var(--muted)]">{t('support.subtitle')}</p>
         </div>
 
-        <div className="grid grid-cols-3 gap-6">
-          <div className="col-span-2 space-y-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 space-y-4">
             <DocGrid />
 
             <FAQAccordion items={t('support.faqs', { returnObjects: true })} />
           </div>
 
-          <div className="col-span-1">
+          <div className="lg:col-span-1">
             <SupportForm />
             <div className="mt-4">
               <div className="text-sm text-[var(--muted)]">{t('support.hotline')}</div>

@@ -5,7 +5,7 @@ export default function TabNav({ tabs = [], active, onChange }) {
         <button
           key={t}
           onClick={() => onChange(t)}
-          className={`px-3 py-2 text-sm ${active === t ? 'text-[var(--primary)] border-b-2 border-[var(--primary)]' : 'text-[var(--muted)] hover:text-white'}`}
+          className={`whitespace-nowrap px-3 py-2 text-sm ${active === t ? 'text-[var(--primary)] border-b-2 border-[var(--primary)]' : 'text-[var(--muted)] hover:text-white'}`}
         >
           {t}
         </button>

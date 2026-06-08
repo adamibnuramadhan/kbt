@@ -13,7 +13,7 @@ export default function DocGrid() {
   const docs = getDocs(t)
 
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {docs.map((d) => (
         <Card key={d.title} className="hover:shadow-lg" hover>
           <div className="flex items-start gap-4">

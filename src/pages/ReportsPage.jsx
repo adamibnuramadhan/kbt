@@ -48,12 +48,12 @@ export default function ReportsPage() {
         </div>
 
         <div>
-          <div className="flex items-center justify-between">
-            <div className="w-3/4">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="w-full sm:w-3/4 overflow-x-auto pb-1 hide-scrollbar">
               <TabNav tabs={TABS} active={active} onChange={setActive} />
             </div>
-            <div className="flex items-center gap-2">
-              <button className="rounded bg-[var(--primary)] px-3 py-2 text-sm text-white">{t('reports.exportReport')} (PDF)</button>
+            <div className="flex items-center">
+              <button className="w-full sm:w-auto rounded bg-[var(--primary)] px-3 py-2 text-sm text-white whitespace-nowrap">{t('reports.exportReport')} (PDF)</button>
             </div>
           </div>
         </div>
