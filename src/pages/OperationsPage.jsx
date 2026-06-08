@@ -162,7 +162,8 @@ export default function OperationsPage() {
               <EmptyState title="Belum ada log pengisian" description="Tambahkan data pengisian bahan bakar agar konsumsi per kendaraan bisa dilacak dengan akurat." actionLabel="Tambah Log BBM" onAction={() => openCreate('fuel')} />
             </div>
           ) : (
-            <table className="w-full table-auto border-collapse bg-[var(--bg-primary)]">
+            <div className="overflow-x-auto">
+            <table className="w-full table-auto border-collapse bg-[var(--bg-primary)] min-w-[700px]">
               <thead className="bg-[var(--bg-primary)] text-left text-xs text-[var(--muted)]">
                 <tr>
                   <th className="px-4 py-3">Tanggal</th>
@@ -194,6 +195,7 @@ export default function OperationsPage() {
                 ))}
               </tbody>
             </table>
+            </div>
           )}
         </div>
       </Card>
@@ -253,7 +255,8 @@ export default function OperationsPage() {
 
       <Card noPadding>
         <div className="overflow-hidden rounded-[var(--radius-card)] border border-[var(--border)]">
-          <table className="w-full table-auto border-collapse bg-[var(--bg-primary)]">
+          <div className="overflow-x-auto">
+          <table className="w-full table-auto border-collapse bg-[var(--bg-primary)] min-w-[600px]">
             <thead className="bg-[var(--bg-primary)] text-left text-xs text-[var(--muted)]">
               <tr>
                 <th className="px-4 py-3">Kendaraan</th>
@@ -283,6 +286,7 @@ export default function OperationsPage() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       </Card>
     </div>

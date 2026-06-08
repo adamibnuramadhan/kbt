@@ -38,7 +38,7 @@ export default function FleetPage() {
     <MainLayout>
       <div className="space-y-6">
         <div>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h1 className="font-display text-xl text-[var(--text)]">{t('fleet.title')}</h1>
               <p className="mt-1 text-sm text-[var(--muted)]">{t('fleet.subtitle')}</p>
@@ -54,7 +54,7 @@ export default function FleetPage() {
           </div>
         </div>
 
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 hide-scrollbar">
           {filters.map((f) => (
             <button
               key={f.key}
@@ -69,7 +69,7 @@ export default function FleetPage() {
           ))}
         </div>
 
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Card>
             <div className="text-[11px] font-medium uppercase tracking-wider text-[var(--muted)]">{t('fleet.total')}</div>
             <div className="mt-2 text-2xl font-display text-[var(--text)]">{vehicles.length}</div>

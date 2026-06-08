@@ -46,7 +46,8 @@ export default function VehicleTable({ vehicles = [], onRowClick = () => {}, onE
             />
           </div>
         ) : (
-          <table className="w-full table-fixed border-collapse bg-[var(--bg-card)]">
+          <div className="overflow-x-auto">
+            <table className="w-full table-fixed border-collapse bg-[var(--bg-card)] min-w-[800px]">
             <thead>
               <tr className="text-left text-[10px] font-medium uppercase tracking-wider text-[var(--muted)]" style={{ borderBottom: '1px solid var(--border)' }}>
                 <th className="px-4 py-3">Vehicle ID</th>
@@ -98,6 +99,7 @@ export default function VehicleTable({ vehicles = [], onRowClick = () => {}, onE
               ))}
             </tbody>
           </table>
+          </div>
         )}
       </div>
 

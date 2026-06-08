@@ -37,12 +37,12 @@ function TopBar() {
               <path d="M4 6h16M4 12h16M4 18h16" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
-          <div className="text-[13px] text-[var(--muted)]">
+          <div className="hidden sm:block text-[13px] text-[var(--muted)]">
             <span>Home</span>
             <span className="mx-1.5 text-[var(--border-strong)]">/</span>
             <span className="text-[var(--text)] font-medium">{currentLabel}</span>
           </div>
-          <div className="w-full max-w-[320px]">
+          <div className="hidden sm:block w-full max-w-[320px]">
             <div className="relative">
               <svg className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[var(--muted)]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path d="M21 21l-4.35-4.35" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

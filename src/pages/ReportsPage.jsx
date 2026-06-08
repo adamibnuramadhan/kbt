@@ -60,11 +60,11 @@ export default function ReportsPage() {
 
         <div>
           {active === 'Consumption' && (
-            <div className="grid grid-cols-3 gap-4">
-              <div className="col-span-2">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+              <div className="lg:col-span-2">
                 <ConsumptionChart />
               </div>
-              <div className="col-span-1 space-y-4">
+              <div className="lg:col-span-1 space-y-4">
                 <EfficiencyChart />
                 <BudgetForecast />
               </div>
@@ -72,7 +72,7 @@ export default function ReportsPage() {
           )}
 
           {active === 'Efficiency' && (
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <EfficiencyChart />
               <Card>
                 <div className="text-sm font-semibold text-[var(--muted)]">Efficiency Rankings</div>
@@ -107,14 +107,15 @@ export default function ReportsPage() {
 
           {active === t('operations.fuelLogs') && (
             <div className="space-y-4">
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <Card className="p-4"><div className="text-sm text-[var(--muted)]">Total Logs</div><div className="mt-2 text-2xl font-bold">{fuelSummary.totalLogs}</div></Card>
                 <Card className="p-4"><div className="text-sm text-[var(--muted)]">Total Liter</div><div className="mt-2 text-2xl font-bold">{fuelSummary.totalLiters.toFixed(1)} L</div></Card>
                 <Card className="p-4"><div className="text-sm text-[var(--muted)]">Total Biaya</div><div className="mt-2 text-2xl font-bold">{currency.format(fuelSummary.totalCost)}</div></Card>
               </div>
               <Card noPadding>
                 <div className="overflow-hidden rounded-[var(--radius-card)] border border-[var(--border)]">
-                  <table className="w-full table-auto border-collapse bg-[var(--bg-primary)]">
+                  <div className="overflow-x-auto">
+                  <table className="w-full table-auto border-collapse bg-[var(--bg-primary)] min-w-[600px]">
                     <thead className="text-left text-xs text-[var(--muted)]">
                       <tr>
                         <th className="px-4 py-3">Tanggal</th>
@@ -136,6 +137,7 @@ export default function ReportsPage() {
                       ))}
                     </tbody>
                   </table>
+                  </div>
                 </div>
               </Card>
             </div>
