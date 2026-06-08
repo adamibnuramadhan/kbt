@@ -19,12 +19,12 @@ const resources = {
       },
       login: {
         welcomeBack: 'Welcome back',
-        signInTo: 'Sign in to FuelGuard',
+        signInTo: 'Sign in to FMS v2.0',
         email: 'Email',
         password: 'Password',
         invalidCredentials: 'Invalid credentials',
         signIn: 'Sign in',
-        footer: 'FuelGuard v2.0 · Fuel Monitoring System'
+        footer: 'FMS v2.0'
       },
       dashboard: {
         greeting: 'Good morning, Pratama',
@@ -158,12 +158,12 @@ const resources = {
       },
       login: {
         welcomeBack: 'Selamat datang kembali',
-        signInTo: 'Masuk ke FuelGuard',
+        signInTo: 'Masuk ke FMS v2.0',
         email: 'Email',
         password: 'Kata Sandi',
         invalidCredentials: 'Kredensial tidak valid',
         signIn: 'Masuk',
-        footer: 'FuelGuard v2.0 · Sistem Pemantauan Bahan Bakar'
+        footer: 'FMS v2.0'
       },
       dashboard: {
         greeting: 'Selamat pagi, Pratama',
