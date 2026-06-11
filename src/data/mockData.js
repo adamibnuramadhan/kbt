@@ -92,7 +92,7 @@ export const systemHealth = {
 export const users = [
   { id: 'u1', name: 'Jordan Davis', role: 'Operator', department: 'Field Ops', lastActive: '2h ago', avatar: 'JD' },
   { id: 'u2', name: 'Sarah Miller', role: 'Admin', department: 'Inventory', lastActive: 'Online', avatar: 'SM' },
-  { id: 'u3', name: 'Alex Rivera', role: 'Viewer', department: 'Analytics', lastActive: '1d ago', avatar: 'AR' },
+  { id: 'u3', name: 'Agus', role: 'Viewer', department: 'Analytics', lastActive: '1d ago', avatar: 'A' },
   { id: 'u4', name: 'Pratama S.', role: 'Operator', department: 'Dispatch', lastActive: '3h ago', avatar: 'PS' },
 ]
 

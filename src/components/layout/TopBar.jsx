@@ -84,9 +84,9 @@ function TopBar() {
           </button>
 
           <div className="flex items-center gap-2.5">
-            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[var(--primary-ghost)] text-[10px] font-semibold text-[var(--primary)]">AR</div>
+            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[var(--primary-ghost)] text-[10px] font-semibold text-[var(--primary)]">A</div>
             <div className="hidden md:block text-right">
-              <p className="text-[13px] font-medium text-[var(--text)]">Alex Rivera</p>
+              <p className="text-[13px] font-medium text-[var(--text)]">Agus</p>
               <p className="text-[10px] text-[var(--muted)]">Fleet Manager</p>
             </div>
           </div>
