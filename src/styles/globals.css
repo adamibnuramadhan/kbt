@@ -6,10 +6,10 @@
 
 :root {
   /* Primary accent — sophisticated teal */
-  --primary: #0ea5e9;
-  --primary-light: #38bdf8;
-  --primary-dark: #0284c7;
-  --primary-ghost: rgba(14, 165, 233, 0.08);
+  --primary: #f0a92d;
+  --primary-light: #f4c264;
+  --primary-dark: #d5901c;
+  --primary-ghost: rgba(240, 169, 45, 0.08);
 
   /* Backgrounds — deep charcoal with blue undertone */
   --bg-primary: #0c0e14;
@@ -50,10 +50,10 @@
 }
 
 :root[data-theme="light"] {
-  --primary: #0284c7;
-  --primary-light: #0ea5e9;
-  --primary-dark: #0369a1;
-  --primary-ghost: rgba(2, 132, 199, 0.06);
+  --primary: #f0a92d;
+  --primary-light: #f4c264;
+  --primary-dark: #d5901c;
+  --primary-ghost: rgba(240, 169, 45, 0.08);
 
   --bg-primary: #f8f9fb;
   --bg-card: #ffffff;
@@ -141,4 +141,23 @@ body {
 /* Utility: subtle glass effect for elevated surfaces */
 .glass {
   backdrop-filter: blur(12px) saturate(150%);
+}
+
+/* Navigation Theme for Light Mode */
+:root[data-theme="light"] .theme-nav {
+  background-color: #f0a92d !important;
+  --bg-card: #f0a92d;
+  --text: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.9);
+  --muted: rgba(255, 255, 255, 0.75);
+  --border: rgba(255, 255, 255, 0.15);
+  --border-strong: rgba(255, 255, 255, 0.3);
+  --bg-hover: rgba(255, 255, 255, 0.15);
+  --bg-primary: rgba(255, 255, 255, 0.2);
+  --primary: #ffffff;
+  --primary-ghost: rgba(255, 255, 255, 0.2);
+}
+
+:root[data-theme="light"] .theme-nav .nav-logo {
+  color: #f0a92d !important;
 }

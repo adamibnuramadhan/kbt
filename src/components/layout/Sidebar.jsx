@@ -48,22 +48,30 @@ function Sidebar() {
 
   return (
     <aside
-      className={`fixed inset-y-0 left-0 z-50 flex flex-col justify-between bg-[var(--bg-card)] transition-all duration-300 md:sticky md:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
+      className={`theme-nav fixed inset-y-0 left-0 z-50 flex flex-col justify-between bg-[var(--bg-card)] transition-all duration-300 md:sticky md:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
       style={{ width: sidebarOpen ? 248 : 72, borderRight: '1px solid var(--border)' }}
     >
       <div>
         <div className="px-5 py-6">
           {sidebarOpen ? (
             <div className="flex items-center gap-3">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--primary)] text-xs font-bold text-white">F</div>
+              <div className="nav-logo flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--primary)] text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                </svg>
+              </div>
               <div>
-                <p className="font-display text-sm text-[var(--text)]">FuelGuard</p>
+                <p className="font-display text-sm text-[var(--text)]">FMS</p>
                 <p className="text-[10px] tracking-widest text-[var(--muted)]">{t('sidebar.monitoring')}</p>
               </div>
             </div>
           ) : (
             <div className="flex items-center justify-center">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--primary)] text-xs font-bold text-white">F</div>
+              <div className="nav-logo flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--primary)] text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                </svg>
+              </div>
             </div>
           )}
         </div>

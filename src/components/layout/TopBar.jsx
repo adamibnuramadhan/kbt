@@ -25,7 +25,7 @@ function TopBar() {
 
   return (
     <>
-      <header className="flex h-14 items-center justify-between border-b border-[var(--border)] bg-[var(--bg-card)] px-6">
+      <header className="theme-nav flex h-14 items-center justify-between border-b border-[var(--border)] bg-[var(--bg-card)] px-6">
         <div className="flex items-center gap-4">
           <button
             type="button"

@@ -15,7 +15,7 @@ const resources = {
         navigation: 'Navigation',
         noResults: 'No results',
         logout: 'Logout',
-        monitoring: 'MONITORING'
+        monitoring: 'FUEL MONITORING SYSTEM'
       },
       login: {
         welcomeBack: 'Welcome back',
@@ -154,7 +154,7 @@ const resources = {
         navigation: 'Navigasi',
         noResults: 'Tidak ada hasil',
         logout: 'Keluar',
-        monitoring: 'PEMANTAUAN'
+        monitoring: 'FUEL MONITORING SYSTEM'
       },
       login: {
         welcomeBack: 'Selamat datang kembali',
